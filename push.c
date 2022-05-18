@@ -7,21 +7,21 @@
 
 void push(stack_t **stack, unsigned int line_number)
 {
-	stack_t *new_stack;
-
-	new_stack = malloc(sizeof(stack_t));
-	printf("pilas\n");
-	if (!new_stack)
+	stack_t *new_node = *stack;
+	stack_t *p_aux = *stack;
+	(void)line_number;
+	printf("entro push");
+	new_node = malloc(sizeof(stack_t));
+	if (!new_node)
+		return;
+	new_node->n = n;
+	new_node->prev = NULL;
+	if (*stack == NULL)
+		new_node->next = NULL;
+	else
 	{
-		free(new_stack);
+		new_node->next = p_aux;
+		p_aux->prev = new_node;
 	}
-
-	new_stack->n = line_number;
-	new_stack->next = *stack;
-	new_stack->prev = NULL;
-
-	if (*stack != NULL)
-		(*stack)->prev = new_stack;
-	
-	*stack = new_stack;
+	*stack = new_node;
 }

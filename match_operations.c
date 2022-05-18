@@ -6,7 +6,7 @@
 * Return: pointer to the operation function.
 */
 
-void (*match_operations(char *opcode))(stack_t **stack, unsigned int line_number)
+void match_operations(char *opcode, stack_t **stack, unsigned int line_number)
 {
 	instruction_t match_ops[] = {
 		{"pall", pall},
@@ -14,14 +14,15 @@ void (*match_operations(char *opcode))(stack_t **stack, unsigned int line_number
 		{NULL, NULL}
 	};
 
-	int a = 0;
+	int a;
 
-	for (; match_ops[a].opcode; a++)
+	for (a = 0; match_ops[a].opcode; a++)
 	{
 		if (*(match_ops[a].opcode) == *opcode)
 		{
-			return (match_ops[a].f);
+			printf("%s\n", opcode);
+			match_ops[a].f(stack, line_number);
 		}
+		
 	}
-	return (NULL);
 }

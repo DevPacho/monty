@@ -5,18 +5,15 @@
  * @argv: is the name of file executable
  * Return: 1 if successful, 0 if not, 0 otherwise
  */
-
-FILE *file = NULL;
+int n = 0;
 
 int main(int argc, char **argv)
 {
 	char *line = NULL;
 	size_t len = 0;
 	ssize_t read;
-	char *copy = NULL;
-	void (*f)(stack_t **stack, unsigned int line_number);
-	int cont = 1;
 	stack_t *stack;
+	FILE *file;
 	(void)argc;
 
 	if (argc != 2)
@@ -35,17 +32,9 @@ int main(int argc, char **argv)
 
 	while ((read = getline(&line, &len, file) != -1))
 	{
-		copy = strdup(line);
-		strtok(copy, DELIMITER);
-		f = match_operations(copy);
-		if (f)
-		{
-			printf("pilas");
-			f(&stack,_atoi(line));
-		}
-		else
-			fprintf(stderr, "L%d: unknown instruction %s\n", cont, copy);
-		cont ++;
+		n = _atoi(line);
+		strtok(line, DELIMITER);
+		match_operations(line, &stack, n);
 	}
 
 	return (0);

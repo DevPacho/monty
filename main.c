@@ -11,7 +11,7 @@ int n = 0;
 
 int main(int argc, char **argv)
 {
-	char *line = NULL;
+	char *line = NULL, *token = NULL;
 	size_t len = 0;
 	ssize_t read;
 	stack_t *stack;
@@ -34,9 +34,11 @@ int main(int argc, char **argv)
 
 	while ((read = getline(&line, &len, file) != -1))
 	{
+		if (*line == '\n')
+			continue;
 		n = _atoi(line);
-		strtok(line, DELIMITER);
-		match_operations(line, &stack, n);
+		token = strtok(line, DELIMITER);
+		match_operations(token, &stack, n);
 	}
 
 	return (0);

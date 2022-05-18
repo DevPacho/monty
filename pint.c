@@ -12,10 +12,12 @@ void pint(stack_t **stack, unsigned int line_number)
 
 	if (!*stack || !stack)
 	{
-		free(*stack);
+		free(stack);
 		fprintf(stderr, "L%d: can't pint, stack empty\n", line_number);
-		exit(-1);
+		exit(EXIT_FAILURE);
 	}
-	else
-		printf("%d\n", traverse->n);
+	
+	traverse = *stack;
+
+	fprintf(stdout, "%d\n", traverse->n);
 }

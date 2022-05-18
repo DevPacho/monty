@@ -36,9 +36,15 @@ typedef struct instruction_s
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
-extern int n;
-#define DELIMITER " \t\n"
+typedef struct global_variables
+{
+	int n;
+	unsigned int line_error;
+} global_variable;
 
+extern global_variable global;
+
+#define DELIMITER " \t\n"
 int _strcmp(char *s1, char *s2);
 int _atoi(char *s);
 stack_t *add_dnodeint(stack_t **head, const int n);
@@ -46,6 +52,8 @@ stack_t *add_dnodeint_end(stack_t **head, const int n);
 void free_stack(stack_t *head);
 void pall(stack_t **stack, unsigned int line_number);
 void push(stack_t **stack, unsigned int line_number);
+void pint(stack_t **stack, unsigned int line_number);
+void pop(stack_t **stack, unsigned int line_number);
 void match_operations(char *opcode, stack_t **stack, unsigned int line_number);
 
 

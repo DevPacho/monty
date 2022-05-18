@@ -39,6 +39,7 @@ typedef struct instruction_s
 extern int n;
 #define DELIMITER " \t\n"
 
+int _strcmp(char *s1, char *s2);
 int _atoi(char *s);
 stack_t *add_dnodeint(stack_t **head, const int n);
 stack_t *add_dnodeint_end(stack_t **head, const int n);

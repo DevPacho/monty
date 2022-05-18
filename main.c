@@ -1,10 +1,12 @@
 #include "monty.h"
+
 /**
  * main - monty
  * @argc: is the number of arguments of input
  * @argv: is the name of file executable
  * Return: 1 if successful, 0 if not, 0 otherwise
  */
+
 int n = 0;
 
 int main(int argc, char **argv)
@@ -27,7 +29,7 @@ int main(int argc, char **argv)
 	if (!file)
 	{
 		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
-		exit (-1);
+		exit(-1);
 	}
 
 	while ((read = getline(&line, &len, file) != -1))

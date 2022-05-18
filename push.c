@@ -1,8 +1,9 @@
 #include "monty.h"
 
 /**
-* @brief 
-* 
+* push - function that pushes an element to the stack.
+* @stack: head of the stack.
+* @line_number: node or line number for errors.
 */
 
 void push(stack_t **stack, unsigned int line_number)
@@ -10,7 +11,6 @@ void push(stack_t **stack, unsigned int line_number)
 	stack_t *new_node = *stack;
 	stack_t *p_aux = *stack;
 	(void)line_number;
-	printf("entro push");
 	new_node = malloc(sizeof(stack_t));
 	if (!new_node)
 		return;

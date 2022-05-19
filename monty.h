@@ -39,7 +39,6 @@ typedef struct instruction_s
 
 typedef struct global_variables
 {
-	int n;
 	FILE *file;
 	char *line;
 } global_variable;
@@ -47,7 +46,6 @@ typedef struct global_variables
 extern global_variable global;
 
 #define DELIMITER " \t\n"
-int _strcmp(char *s1, char *s2);
 int _isdigit(int c);
 int str_digit(char *str);
 stack_t *add_dnodeint(stack_t **head, const int n);

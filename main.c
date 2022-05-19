@@ -1,6 +1,6 @@
 #include "monty.h"
 
-global_variable global = {0, NULL, NULL};
+global_variable global = { NULL, NULL};
 
 /**
  * main - monty
@@ -14,7 +14,7 @@ int main(int argc, char **argv)
 	char *token_input = NULL;
 	size_t len = 0, read;
 	stack_t *stack;
-	unsigned int cont = 0;
+	unsigned int cont = 1;
 
 	if (argc != 2)
 	{
@@ -35,11 +35,14 @@ int main(int argc, char **argv)
 		if (*(global.line) != 10)
 		{
 			token_input = strtok(global.line, DELIMITER);
+			if (!token_input)
+				continue;
 			match_operations(token_input, &stack, cont);
 		}
 		cont++;
 	}
 	fclose(global.file);
+	free_stack(stack);
 	free(global.line);
 	return (EXIT_SUCCESS);
 }

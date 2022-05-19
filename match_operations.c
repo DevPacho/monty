@@ -20,12 +20,15 @@ void match_operations(char *opcode, stack_t **stack, unsigned int line_number)
 
 	for (a = 0; match_ops[a].opcode; a++)
 	{
-		if (_strcmp(opcode, match_ops[a].opcode) == 0)
+		if (strcmp(opcode, match_ops[a].opcode) == 0)
 		{
 			match_ops[a].f(stack, line_number);
 			return;
 		}
 	}
 	fprintf(stderr, "L%u: unknown instruction %s\n", line_number, opcode);
+	fclose(global.file);
+	free_stack(*stack);
+	free(global.line);
 	exit(EXIT_FAILURE);
 }

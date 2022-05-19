@@ -8,45 +8,39 @@
 
 void push(stack_t **stack, unsigned int line_number)
 {
-	stack_t *new_node = NULL, *p_aux = *stack;
-	int i;
-	global.token = strtok(NULL, DELIMITER);
-	if (global.token == NULL)
+	char *token_input = NULL;
+	stack_t *new_head_stack = NULL;
+	int node;
+
+	token_input = strtok(NULL, DELIMITER);
+
+	if(str_digit(token_input))
 	{
-		fprintf(stderr, "L%i: usage: push integer", line_number);
-		fclose(global.file);
-		exit(EXIT_FAILURE);	
-	}
-	for (i = 0; global.token[i] != '\0'; i++)
-	{
-		if (global.token[i] == '-' && global.token[i+1] == '0')
-			break;
-		if (_isdigit(global.token[i]) != 1)
+		node = atoi(token_input);
+
+		new_head_stack = malloc(sizeof(stack_t));
+
+		if (!new_head_stack)
 		{
-			fprintf(stderr, "L%i: usage: push integer", line_number);
+			free_stack(*stack);
 			fclose(global.file);
+			fprintf(stderr, "Error: malloc failed\n");
 			exit(EXIT_FAILURE);
 		}
 
-	}
-	global.n = atoi(global.token);
-	new_node = malloc(sizeof(stack_t));
-	if (!new_node)
-	{
-		free(stack);
-		fprintf(stderr, "Error: malloc failed");
-		exit(EXIT_FAILURE);
-	}
+		new_head_stack->n = node;
+		new_head_stack->next = *stack;
+		new_head_stack->prev = NULL;
 
-	new_node->n = global.n;
-	new_node->prev = NULL;
-
-	if (*stack == NULL)
-		new_node->next = NULL;
+		if (*stack != NULL)
+				(*stack)->prev = new_head_stack;
+		*stack = new_head_stack;
+	}
 	else
 	{
-		new_node->next = p_aux;
-		p_aux->prev = new_node;
+		free_stack(*stack);
+		fclose(global.file);
+		fprintf(stderr, "L%d: usage: push integer\n", line_number);
+		exit(EXIT_FAILURE);
 	}
-	*stack = new_node;
 }

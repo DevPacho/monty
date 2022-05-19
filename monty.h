@@ -5,6 +5,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -41,7 +42,6 @@ typedef struct global_variables
 	int n;
 	FILE *file;
 	char *line;
-	char *token;
 } global_variable;
 
 extern global_variable global;
@@ -49,6 +49,7 @@ extern global_variable global;
 #define DELIMITER " \t\n"
 int _strcmp(char *s1, char *s2);
 int _isdigit(int c);
+int str_digit(char *str);
 stack_t *add_dnodeint(stack_t **head, const int n);
 stack_t *add_dnodeint_end(stack_t **head, const int n);
 void free_stack(stack_t *head);

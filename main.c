@@ -32,7 +32,7 @@ int main(int argc, char **argv)
 
 	while ((read = getline(&global.line, &len, global.file) != -1))
 	{
-		if (*(global.line) != 10)
+		if (*(global.line) != 10 || *(global.line) != 35)
 		{
 			token_input = strtok(global.line, DELIMITER);
 			if (!token_input)

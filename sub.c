@@ -28,5 +28,5 @@ void sub(stack_t **stack, unsigned int line_number)
 	sum -= (*stack)->next->n;
 	*stack = (*stack)->next;
 	free((*stack)->prev);
-	(*stack)->n = sum;
+	(*stack)->n = (sum)*-1;
 }

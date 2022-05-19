@@ -3,7 +3,7 @@
 /**
 * swap - function that swaps the top two elements of the stack.
 * @stack: head of the stack.
-* @line_number: node or line number for errors.
+* @line_number: line number for errors.
 */
 
 void swap(stack_t **stack, unsigned int line_number)

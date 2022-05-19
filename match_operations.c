@@ -18,6 +18,10 @@ void match_operations(char *opcode, stack_t **stack, unsigned int line_number)
 		{"add", add},
 		{"swap", swap},
 		{"nop", nop},
+		{"sub", sub},
+		{"div", _div_},
+		{"mul",	mul},
+		{"mod", mod},
 		{NULL, NULL},
 	};
 	int a;
@@ -30,7 +34,7 @@ void match_operations(char *opcode, stack_t **stack, unsigned int line_number)
 			return;
 		}
 	}
-	
+
 	fprintf(stderr, "L%u: unknown instruction %s\n", line_number, opcode);
 	fclose(global.file);
 	free_stack(*stack);

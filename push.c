@@ -11,8 +11,13 @@ void push(stack_t **stack, unsigned int line_number)
 	stack_t *new_node = NULL, *p_aux = *stack;
 	(void)line_number;
 
+	if(_isdigit(global.line[5]) != 1 && _isdigit(global.line[6]) != 1)
+	{
+		fprintf(stderr, "L%i: usage: push integer", global.line_error);
+		fclose(global.file);
+		exit (EXIT_FAILURE);
+	}
 	new_node = malloc(sizeof(stack_t));
-
 	if (!new_node)
 	{
 		free(stack);

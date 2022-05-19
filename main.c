@@ -1,5 +1,5 @@
 #include "monty.h"
-global_variable global = {0, 1};
+global_variable global = {0, 1, NULL, NULL};
 /**
  * main - monty
  * @argc: is the number of arguments of input
@@ -9,10 +9,9 @@ global_variable global = {0, 1};
 
 int main(int argc, char **argv)
 {
-	char *line = NULL, *token = NULL;
+	char *token = NULL;
 	size_t len = 0, read;
 	stack_t *stack;
-	FILE *file;
 	(void)argc;
 	if (argc != 2)
 	{
@@ -21,20 +20,24 @@ int main(int argc, char **argv)
 	}
 
 	stack = NULL;
-	file = fopen(argv[1], "r");
-	if (!file)
+	global.file = fopen(argv[1], "r");
+	if (!global.file)
 	{
 		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
 		exit(EXIT_FAILURE);
 	}
 
-	while ((read = getline(&line, &len, file) != -1))
+	while ((read = getline(&global.line, &len, global.file) != -1))
 	{
-		if (*line == '\n')
-			continue;
-		global.n = _atoi(line);
-		token = strtok(line, DELIMITER);
-		match_operations(token, &stack, global.n);
+		if (*(global.line) != 10)
+		{
+			global.n = _atoi(global.line);
+			token = strtok(global.line, DELIMITER);
+			match_operations(token, &stack, global.n);
+		}
+		global.line_error++;
 	}
+	fclose(global.file);
+	free(global.line);
 	return (EXIT_SUCCESS);
 }

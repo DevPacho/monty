@@ -17,16 +17,15 @@ void match_operations(char *opcode, stack_t **stack, unsigned int line_number)
 		{NULL, NULL},
 	};
 	int a;
-	(void)line_number;
 
 	for (a = 0; match_ops[a].opcode; a++)
 	{
 		if (_strcmp(opcode, match_ops[a].opcode) == 0)
 		{
-			match_ops[a].f(stack, global.line_error);
+			match_ops[a].f(stack, line_number);
 			return;
 		}
 	}
-	fprintf(stderr, "L%i: unknown instruction %s\n", global.line_error, opcode);
+	fprintf(stderr, "L%u: unknown instruction %s\n", line_number, opcode);
 	exit(EXIT_FAILURE);
 }

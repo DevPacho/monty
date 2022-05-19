@@ -39,7 +39,6 @@ typedef struct instruction_s
 typedef struct global_variables
 {
 	int n;
-	unsigned int line_error;
 	FILE *file;
 	char *line;
 	char *token;

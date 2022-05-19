@@ -10,15 +10,20 @@ void push(stack_t **stack, unsigned int line_number)
 {
 	stack_t *new_node = NULL, *p_aux = *stack;
 	int i;
-	(void)line_number;
 	global.token = strtok(NULL, DELIMITER);
+	if (global.token == NULL)
+	{
+		fprintf(stderr, "L%i: usage: push integer", line_number);
+		fclose(global.file);
+		exit(EXIT_FAILURE);	
+	}
 	for (i = 0; global.token[i] != '\0'; i++)
 	{
 		if (global.token[i] == '-' && global.token[i+1] == '0')
 			break;
 		if (_isdigit(global.token[i]) != 1)
 		{
-			fprintf(stderr, "L%i: usage: push integer", global.line_error);
+			fprintf(stderr, "L%i: usage: push integer", line_number);
 			fclose(global.file);
 			exit(EXIT_FAILURE);
 		}

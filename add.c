@@ -14,14 +14,14 @@ void add(stack_t **stack, unsigned int line_number)
 	{
 		free_stack(*stack);
 		fclose(global.file);
-		fprintf(stderr, "L%i: can't add, stack too short", line_number);
+		fprintf(stderr, "L%i: can't add, stack too short\n", line_number);
 		exit(EXIT_FAILURE);
 	}
 	if ((*stack)->next == NULL)
 	{
 		free_stack(*stack);
 		fclose(global.file);
-		fprintf(stderr, "L%i: can't add, stack too short", line_number);
+		fprintf(stderr, "L%i: can't add, stack too short\n", line_number);
 		exit(EXIT_FAILURE);
 	}
 	sum += (*stack)->n;

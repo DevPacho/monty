@@ -15,6 +15,7 @@ void match_operations(char *opcode, stack_t **stack, unsigned int line_number)
 		{"push", push},
 		{"pint", pint},
 		{"pop", pop},
+		{"add", add},
 		{"swap", swap},
 		{NULL, NULL},
 	};

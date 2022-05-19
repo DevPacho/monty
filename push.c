@@ -1,22 +1,30 @@
 #include "monty.h"
 
 /**
-* push - function that pushes an element to the stack.
-* @stack: head of the stack.
-* @line_number: node or line number for errors.
-*/
+ * push - function that pushes an element to the stack.
+ * @stack: head of the stack.
+ * @line_number: node or line number for errors.
+ */
 
 void push(stack_t **stack, unsigned int line_number)
 {
 	stack_t *new_node = NULL, *p_aux = *stack;
+	int i;
 	(void)line_number;
-
-	if(_isdigit(global.line[5]) != 1 && _isdigit(global.line[6]) != 1)
+	global.token = strtok(NULL, DELIMITER);
+	for (i = 0; global.token[i] != '\0'; i++)
 	{
-		fprintf(stderr, "L%i: usage: push integer", global.line_error);
-		fclose(global.file);
-		exit (EXIT_FAILURE);
+		if (global.token[i] == '-' && global.token[i+1] == '0')
+			break;
+		if (_isdigit(global.token[i]) != 1)
+		{
+			fprintf(stderr, "L%i: usage: push integer", global.line_error);
+			fclose(global.file);
+			exit(EXIT_FAILURE);
+		}
+
 	}
+	global.n = atoi(global.token);
 	new_node = malloc(sizeof(stack_t));
 	if (!new_node)
 	{

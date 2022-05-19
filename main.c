@@ -1,5 +1,5 @@
 #include "monty.h"
-global_variable global = {0, 1, NULL, NULL};
+global_variable global = {0, 1, NULL, NULL, NULL};
 /**
  * main - monty
  * @argc: is the number of arguments of input
@@ -9,7 +9,6 @@ global_variable global = {0, 1, NULL, NULL};
 
 int main(int argc, char **argv)
 {
-	char *token = NULL;
 	size_t len = 0, read;
 	stack_t *stack;
 	(void)argc;
@@ -31,9 +30,8 @@ int main(int argc, char **argv)
 	{
 		if (*(global.line) != 10)
 		{
-			global.n = _atoi(global.line);
-			token = strtok(global.line, DELIMITER);
-			match_operations(token, &stack, global.n);
+			global.token = strtok(global.line, DELIMITER);
+			match_operations(global.token, &stack, global.n);
 		}
 		global.line_error++;
 	}

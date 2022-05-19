@@ -42,13 +42,13 @@ typedef struct global_variables
 	unsigned int line_error;
 	FILE *file;
 	char *line;
+	char *token;
 } global_variable;
 
 extern global_variable global;
 
 #define DELIMITER " \t\n"
 int _strcmp(char *s1, char *s2);
-int _atoi(char *s);
 int _isdigit(int c);
 stack_t *add_dnodeint(stack_t **head, const int n);
 stack_t *add_dnodeint_end(stack_t **head, const int n);

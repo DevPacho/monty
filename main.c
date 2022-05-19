@@ -26,7 +26,6 @@ int main(int argc, char **argv)
 	global.file = fopen(argv[1], "r");
 	if (!global.file)
 	{
-		fclose(global.file);
 		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
 		exit(EXIT_FAILURE);
 	}
@@ -37,7 +36,10 @@ int main(int argc, char **argv)
 		{
 			token_input = strtok(global.line, DELIMITER);
 			if (!token_input)
+			{
+				cont++;
 				continue;
+			}
 			match_operations(token_input, &stack, cont);
 		}
 		cont++;

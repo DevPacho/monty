@@ -15,6 +15,7 @@ void match_operations(char *opcode, stack_t **stack, unsigned int line_number)
 		{"push", push},
 		{"pint", pint},
 		{"pop", pop},
+		{"swap", swap},
 		{NULL, NULL},
 	};
 	int a;
@@ -27,6 +28,7 @@ void match_operations(char *opcode, stack_t **stack, unsigned int line_number)
 			return;
 		}
 	}
+	
 	fprintf(stderr, "L%u: unknown instruction %s\n", line_number, opcode);
 	fclose(global.file);
 	free_stack(*stack);

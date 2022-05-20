@@ -2,18 +2,18 @@
 
 /**
 * pstr - function that prints the string starting at the top of the stack.
-* @head: head of the stack.
+* @stack: head of the stack.
 * @line_number: line number for errors.
 */
 
 void pstr(stack_t **stack, unsigned int line_number)
 {
-	stack_t *traverse_to_print = *stack;
+	stack_t *traverse = *stack;
 	(void)line_number;
 
-	while (traverse_to_print && isprint(traverse_to_print->n) && traverse_to_print->n != 0)
+	while (traverse && isprint(traverse->n) && traverse->n != 0)
 	{
-		printf("%c\n", traverse_to_print->n);
-		traverse_to_print = traverse_to_print->next;
+		printf("%c\n", traverse->n);
+		traverse = traverse->next;
 	}
 }

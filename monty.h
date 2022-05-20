@@ -63,6 +63,7 @@ void sub(stack_t **stack, unsigned int line_number);
 void mul(stack_t **stack, unsigned int line_number);
 void mod(stack_t **stack, unsigned int line_number);
 void pchar(stack_t **stack, unsigned int line_number);
+void pstr(stack_t **stack, unsigned int line_number);
 void match_operations(char *opcode, stack_t **stack, unsigned int line_number);
 
 #endif /*monty.h **/

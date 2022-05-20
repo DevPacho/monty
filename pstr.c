@@ -13,7 +13,8 @@ void pstr(stack_t **stack, unsigned int line_number)
 
 	while (traverse && isprint(traverse->n) && traverse->n != 0)
 	{
-		printf("%c\n", traverse->n);
+		printf("%c", traverse->n);
 		traverse = traverse->next;
 	}
+	printf("\n");
 }

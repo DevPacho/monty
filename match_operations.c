@@ -4,7 +4,7 @@
 * match_operations - function that checks the validity of an opcode.
 * @opcode: opcode to check.
 * @stack: head of the stack.
-* @line_number: node or line number for errors.
+* @line_number: line number for errors.
 * Return: pointer to the operation function.
 */
 
@@ -22,6 +22,7 @@ void match_operations(char *opcode, stack_t **stack, unsigned int line_number)
 		{"div", _div_},
 		{"mul",	mul},
 		{"mod", mod},
+		{"pchar", pchar},
 		{NULL, NULL},
 	};
 	int a;

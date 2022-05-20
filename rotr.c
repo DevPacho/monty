@@ -8,20 +8,20 @@
 
 void rotr(stack_t **stack, unsigned int line_number)
 {
-	int tmp = 0;
-	stack_t *p_aux = NULL;
+	stack_t *traverse_latest = NULL;
 	(void)line_number;
+
 	if (!*stack)
 		return;
-	p_aux = *stack;
-	tmp = (*stack)->n;
-	while (p_aux)
+	
+	traverse_latest = *stack;
+	while (traverse_latest->next)
 	{
-		if (p_aux->next == NULL)
-		{
-			(*stack)->n = p_aux->n;
-			p_aux->n = tmp;
-		}
-		p_aux = p_aux->next;
+		traverse_latest = traverse_latest->next;
 	}
+	traverse_latest->next = *stack;
+	(*stack)->prev = traverse_latest;
+	traverse_latest->prev->next = NULL;
+	traverse_latest->prev = NULL;
+	*stack = traverse_latest;
 }

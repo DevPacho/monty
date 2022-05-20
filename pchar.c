@@ -16,7 +16,7 @@ void pchar(stack_t **stack, unsigned int line_number)
 		exit(EXIT_FAILURE);
 	}
 
-	if (!isalpha((*stack)->n))
+	if (!isprint((*stack)->n))
 	{
 		free_stack(*stack);
 		fclose(global.file);

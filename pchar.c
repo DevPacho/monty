@@ -21,6 +21,7 @@ void pchar(stack_t **stack, unsigned int line_number)
 		free_stack(*stack);
 		fclose(global.file);
 		fprintf(stderr, "L%d: can't pchar, stack empty", line_number);
+		exit(EXIT_FAILURE);
 	}
 
 	printf("%c", (*stack)->n);

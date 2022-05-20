@@ -16,11 +16,11 @@ void pchar(stack_t **stack, unsigned int line_number)
 		exit(EXIT_FAILURE);
 	}
 
-	if (!isprint((*stack)->n))
+	if (!isascii((*stack)->n))
 	{
 		free_stack(*stack);
 		fclose(global.file);
-		fprintf(stderr, "L%d: can't pchar, stack empty", line_number);
+		fprintf(stderr, "L%d: can't pchar, value out of range\n", line_number);
 		exit(EXIT_FAILURE);
 	}
 

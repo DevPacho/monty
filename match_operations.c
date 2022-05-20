@@ -25,7 +25,7 @@ void match_operations(char *opcode, stack_t **stack, unsigned int line_number)
 		{"pchar", pchar},
 		{"pstr", pstr},
 		{"rotl", rotl},
-		{"rotr", rotr},
+		{"rotr", rotr}, {"queue", queue}, {"stack", _stack},
 		{NULL, NULL},
 	};
 	int a;

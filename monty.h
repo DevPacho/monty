@@ -41,6 +41,7 @@ typedef struct global_variables
 {
 	FILE *file;
 	char *line;
+	int is_stack;
 } global_variable;
 
 extern global_variable global;
@@ -48,8 +49,6 @@ extern global_variable global;
 #define DELIMITER " \t\n"
 int _isdigit(int c);
 int str_digit(char *str);
-stack_t *add_dnodeint(stack_t **head, const int n);
-stack_t *add_dnodeint_end(stack_t **head, const int n);
 void free_stack(stack_t *head);
 void pall(stack_t **stack, unsigned int line_number);
 void push(stack_t **stack, unsigned int line_number);
@@ -66,6 +65,9 @@ void pchar(stack_t **stack, unsigned int line_number);
 void pstr(stack_t **stack, unsigned int line_number);
 void rotl(stack_t **stack, unsigned int line_number);
 void rotr(stack_t **stack, unsigned int line_number);
+void _stack(stack_t **stack, unsigned int line_number);
+void queue(stack_t **stack, unsigned int line_number);
+void add_dnodeint(stack_t *new_head_stack , stack_t **stack);
 void match_operations(char *opcode, stack_t **stack, unsigned int line_number);
-
+void add_dnodeint_endt(stack_t *new_head_stack , stack_t **stack);
 #endif /*monty.h **/

@@ -1,6 +1,6 @@
 #include "monty.h"
 
-global_variable global = { NULL, NULL};
+global_variable global = { NULL, NULL, 0};
 
 /**
  * main - monty

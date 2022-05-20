@@ -10,7 +10,7 @@ void push(stack_t **stack, unsigned int line_number)
 {
 	char *token_input = NULL;
 	stack_t *new_head_stack = NULL;
-	int node;
+	int node = 0;
 
 	token_input = strtok(NULL, DELIMITER);
 	if (str_digit(token_input))
@@ -25,11 +25,10 @@ void push(stack_t **stack, unsigned int line_number)
 			exit(EXIT_FAILURE);
 		}
 		new_head_stack->n = node;
-		new_head_stack->next = *stack;
-		new_head_stack->prev = NULL;
-		if (*stack != NULL)
-			(*stack)->prev = new_head_stack;
-		*stack = new_head_stack;
+		if (global.is_stack == 0 || global.is_stack == 1)
+			add_dnodeint(new_head_stack, stack);
+		else
+			add_dnodeint_endt(new_head_stack, stack);
 	}
 	else
 	{
@@ -39,4 +38,42 @@ void push(stack_t **stack, unsigned int line_number)
 		fprintf(stderr, "L%d: usage: push integer\n", line_number);
 		exit(EXIT_FAILURE);
 	}
+}
+
+/**
+ * add_dnodeint - fuction that add new node
+ * @new_head_stack: is a new node
+ * @stack: is a head
+ */
+void add_dnodeint(stack_t *new_head_stack, stack_t **stack)
+{
+	new_head_stack->next = *stack;
+	new_head_stack->prev = NULL;
+	if (*stack != NULL)
+		(*stack)->prev = new_head_stack;
+	*stack = new_head_stack;
+}
+
+/**
+ * add_dnodeint_endt - fuction that add new node at the end
+ * @new_head_stack: is a new node
+ * @stack: is a head
+ */
+void add_dnodeint_endt(stack_t *new_head_stack, stack_t **stack)
+{
+	stack_t *p_aux = NULL;
+
+	new_head_stack->next = NULL;
+	if (*stack == NULL)
+	{
+		*stack = new_head_stack;
+		new_head_stack->prev = NULL;
+		return;
+	}
+	p_aux = *stack;
+	while (p_aux->next != NULL)
+		p_aux = p_aux->next;
+
+	new_head_stack->prev = p_aux;
+	p_aux->next = new_head_stack;
 }

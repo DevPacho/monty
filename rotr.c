@@ -13,7 +13,7 @@ void rotr(stack_t **stack, unsigned int line_number)
 
 	if (!*stack)
 		return;
-	
+
 	traverse_latest = *stack;
 	while (traverse_latest->next)
 	{
